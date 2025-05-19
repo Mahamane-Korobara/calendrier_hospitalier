@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar/index.global.min.js'></script>
+    
+  </head>
+  <style>
+  /* changer le fond de TOUTES les cellules du mois */
+  body {
+   padding: 0;
+   margin: 0;
+  }
+
+  .conteneur {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    padding: 20px;
+  }
+
+  .fc .fc-daygrid-day-bg {
+    background-color: #f9f9f9;
+  }
+
+  /* bordure autour de chaque case */
+  .fc .fc-daygrid-day-frame {
+    border: 1px solid red;
+  }
+
+  /* cibler uniquement le numéro du jour */
+  .fc .fc-daygrid-day-top {
+    font-weight: bold;
+    color: #555;
+  }
+
+  .notifications {
+    height: 200px;
+    padding: 0 20px;
+    border: 1px solid red;
+    position: relative;
+    top: 65px;
+    overflow-y: auto;
+  }
+
+
+</style>
+
+  <body>
+    <div class="conteneur">
+      <div id='calendar'></div>
+      <div class="notifications">
+        <div class="h2_notification">
+          <h2>Notifications</h2>
+          <ul id="notif-list"></ul>
+        </div>
+      </div>
+    </div>
+    <script src="js/script.js"></script>
+  </body>
+</html>

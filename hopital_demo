@@ -1,0 +1,46 @@
+-- Création de la base et des tables
+CREATE DATABASE IF NOT EXISTS hopital_demo;
+USE hopital_demo;
+
+CREATE TABLE patients (
+  id_patient INT PRIMARY KEY AUTO_INCREMENT,
+  nom VARCHAR(50),
+  prenom VARCHAR(50)
+);
+
+CREATE TABLE personnel (
+  id_personnel INT PRIMARY KEY AUTO_INCREMENT,
+  nom VARCHAR(50),
+  prenom VARCHAR(50),
+  role VARCHAR(30)
+);
+
+CREATE TABLE rendez_vous (
+  id_rdv INT PRIMARY KEY AUTO_INCREMENT,
+  id_patient INT,
+  id_personnel INT,
+  date_rdv DATETIME,
+  duree_min INT,
+  type_rdv VARCHAR(30),
+  statut VARCHAR(20),
+  FOREIGN KEY (id_patient) REFERENCES patients(id_patient),
+  FOREIGN KEY (id_personnel) REFERENCES personnel(id_personnel)
+);
+
+-- Insertions patients
+INSERT INTO patients (nom, prenom) VALUES
+('Dupont','Alice'),
+('Durand','Bob'),
+('Martin','Chloé');
+
+-- Insertions personnel
+INSERT INTO personnel (nom, prenom, role) VALUES
+('Bernard','Driss','medecin'),
+('Leroux','Émilie','receptionniste');
+
+-- Insertions rendez-vous
+INSERT INTO rendez_vous (id_patient, id_personnel, date_rdv, duree_min, type_rdv, statut) VALUES
+(1, 1, '2025-05-18 09:00:00', 30, 'consultation', 'confirme'),
+(2, 1, '2025-05-18 10:30:00', 45, 'suivi',        'confirme'),
+(3, 1, '2025-05-18 14:00:00', 60, 'intervention','programme'),
+(1, 1, '2025-05-19 11:15:00', 30, 'urgence',     'programme');
